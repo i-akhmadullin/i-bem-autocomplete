@@ -1,0 +1,116 @@
+{
+    "scope": "source.js",
+
+    "completions": [
+
+        { "trigger": "init (function (BEM, undefined) { ... })(BEM);", "contents": "(function (BEM, undefined) {\n\n\tBEM.DOM.decl('${1:b-page}', {\n\n\t\tonSetMod: {\n\t\t\tjs: function () {\n\t\t\t\t${2:}\n\t\t\t}\n\t\t}\n\n\t});\n\n})(BEM);$0" },
+
+        { "trigger": ".__base() (super call)", "contents": "__base()$0" },
+        { "trigger": ".__self() (static methods)", "contents": "__self()$0" },
+
+        { "trigger": "var self = this", "contents": "var ${1:self} = this$0" },
+
+        { "trigger": ".domElem", "contents": ".domElem$0" },
+        { "trigger": ".bem(block) (avoid!)", "contents": "bem('${1:blockName}')$0" },
+
+        // поиск внутри контекста
+        { "trigger": ".findBlockInside(block)", "contents": "findBlockInside(${1:block})$0" },
+        { "trigger": ".findBlockInside([elem], block)", "contents": "findBlockInside(${1:elem}, ${2:block})$0" },
+        { "trigger": ".findBlocksInside(block)", "contents": "findBlocksInside(${1:block})$0" },
+        { "trigger": ".findBlocksInside([elem], block)", "contents": "findBlocksInside(${1:elem}, ${2:block})$0" },
+        // поиск снаружи контекста
+        { "trigger": ".findBlockOutside(block)", "contents": "findBlockOutside(${1:block})$0" },
+        { "trigger": ".findBlockOutside([elem], block)", "contents": "findBlockOutside(${1:elem}, ${2:block})$0" },
+        { "trigger": ".findBlocksOutside(block)", "contents": "findBlocksOutside(${1:block})$0" },
+        { "trigger": ".findBlocksOutside([elem], block)", "contents": "findBlocksOutside(${1:elem}, ${2:block})$0" },
+        // поиск на DOM-узле текущего блока
+        { "trigger": ".findBlockOn(block)", "contents": "findBlockOn(${1:block})$0" },
+        { "trigger": ".findBlockOn([elem], block)", "contents": "findBlockOn(${1:elem}, ${2:block})$0" },
+        { "trigger": ".findBlocksOn(block)", "contents": "findBlocksOn(${1:block})$0" },
+        { "trigger": ".findBlocksOn([elem], block)", "contents": "findBlocksOn(${1:elem}, ${2:block})$0" },
+
+        // кеширующий
+        { "trigger": ".elem(name) (cache)", "contents": "elem(${1:name})$0" },
+        { "trigger": ".elem(name, modName, modVal) (cache)", "contents": "elem(${1:name}, ${2:modName}, ${3:modVal})$0" },
+        // некеширующий
+        { "trigger": ".findElem(name) (nocache)", "contents": "findElem(${1:name})$0" },
+        { "trigger": ".findElem(name, modName, modVal) (nocache)", "contents": "findElem(${1:name}, ${2:modName}, ${3:modVal})$0" },
+        { "trigger": ".findElem(ctx, name) (nocache)", "contents": "findElem(${1:ctx}, ${2:name})$0" },
+        { "trigger": ".findElem(ctx, name, modName, modVal) (nocache)", "contents": "findElem(${1:ctx}, ${2:name}, ${3:modName}, ${4:modVal})$0" },
+
+        // значение модификатора блока
+        { "trigger": ".getMod(modName)", "contents": "getMod(${1:modName})$0" },
+        // значение модификатора элемента
+        { "trigger": ".getMod(elem, modName)", "contents": "getMod(${1:elem}, ${2:modName})$0" },
+        // проверка модификатора
+        { "trigger": ".hasMod(modName, modVal)", "contents": "hasMod(${1:modName}, ${2:modVal})$0" },
+        { "trigger": ".hasMod(elem, modName, modVal)", "contents": "hasMod(${1:elem}, ${2:modName}, ${3:modVal})$0" },
+        // установка модификатора
+        { "trigger": ".setMod(modName, modVal)", "contents": "setMod(${1:modName}, ${2:modVal})$0" },
+        { "trigger": ".setMod(elem, modName, modVal)", "contents": "setMod(${1:elem}, ${2:modName}, ${3:modVal})$0" },
+        // удаление модификатора
+        { "trigger": ".delMod(modName)", "contents": "delMod(${1:modName});$0" },
+        { "trigger": ".delMod(elem, modName)", "contents": "delMod(${1:elem}, ${2:modName});$0" },
+        // переключение значений модификатора
+        { "trigger": ".toggleMod(modName, modVal1, modVal2)", "contents": "toggleMod(${1:modName}, ${2:modVal1}, ${3:modVal2});$0" },
+        { "trigger": ".toggleMod(elem, modName, modVal1, modVal2)", "contents": "toggleMod(${1:elem}, ${2:modName}, ${3:modVal1}, ${4:modVal2});$0" },
+        { "trigger": ".toggleMod(elem, modName, modVal1, modVal2, condition)", "contents": "toggleMod(${1:elem}, ${2:modName}, ${3:modVal1}, ${4:modVal2}, ${5:condition});$0" },
+
+        { "trigger": ".onSetMod: { ... }", "contents": "onSetMod: {\n\t${1:modName}: function(mod, val, oldVal) {\n\t\t${2:}\n\t}\n}$0" },
+        { "trigger": ".onElemSetMod: { ... }", "contents": "onElemSetMod: {\n\t${1:modName}: function(mod, val, oldVal) {\n\t\t${2:}\n\t}\n}$0" },
+
+        // DOM-события
+        { "trigger": ".bindTo(event, fn) (DOM-event)", "contents": "bindTo('${1:click}', function(){${2:}});$0" },
+        { "trigger": ".bindTo(elem, event, fn) (DOM-event)", "contents": "bindTo(${1:elem}, '${2:click}', function(){${3:}});$0" },
+        { "trigger": ".liveBindTo(event, fn) (DOM-event)", "contents": "liveBindTo('${1:click}', function(){${2:}});$0" },
+        { "trigger": ".liveBindTo(elem, event, fn) (DOM-event)", "contents": "liveBindTo(${1:elem}, '${2:click}', function(){${3:}});$0" },
+        { "trigger": ".unbindFrom(event) (DOM-event)", "contents": "unbindFrom('${1:click}');$0" },
+        { "trigger": ".unbindFrom(elem, event) (DOM-event)", "contents": "unbindFrom(${1:elem}, '${2:click}');$0" },
+        // liveUnbindFrom ??
+
+        // BEM-события
+        { "trigger": ".on(event, fn) (BEM-event)", "contents": "on('${1:click}', function(){${2:}});$0" },
+        { "trigger": ".on(event, data, fn) (BEM-event)", "contents": "on('${1:click}', ${2:data}, function(){${3:}});$0" },
+        { "trigger": ".on(event, fn, ctx) (BEM-event)", "contents": "on('${1:click}', function(){${2:}}, ${3:ctx});$0" },
+        { "trigger": ".on(event, data, fn, ctx) (BEM-event)", "contents": "on('${1:click}', ${2:data}, function(){${3:}}, ${4:ctx});$0" },
+
+        { "trigger": ".un(event, fn) (BEM-event)", "contents": "un('${1:click}', function(){${2:}});$0" },
+        { "trigger": ".un(event, data, fn) (BEM-event)", "contents": "un('${1:click}', ${2:data}, function(){${3:}})$0" },
+        { "trigger": ".un(event, fn, ctx) (BEM-event)", "contents": "un('${1:click}', function(){${2:}}, ${3:ctx});$0" },
+        { "trigger": ".un(event, data, fn, ctx) (BEM-event)", "contents": "un('${1:click}', ${2:data}, function(){${3:}}, ${4:ctx});$0" },
+
+        { "trigger": ".trigger(event) (BEM-event)", "contents": "trigger(${1:event})$0" },
+        { "trigger": ".trigger(event, data) (BEM-event)", "contents": "trigger(${1:event}, ${2:data})$0" },
+
+        { "trigger": ".liveCtxBind(elem, event, fn, ctx) (BEM-event)", "contents": "liveCtxBind(${1:elem}, '${2:click}', function(){${3:}}, ${4:ctx});$0" },
+
+
+        // алиасы для блоков, элементов и модификаторов
+        { "trigger": "block", "contents": "'${1:blockName}'$0" },
+        { "trigger": "block: 'blockName'", "contents": "{ block: '${1:blockName}' }$0" },
+        { "trigger": "block: 'blockName', elem: 'elemName'", "contents": "{ block: '${1:blockName}', elem: '${2:elemName}' }$0" },
+        { "trigger": "block: 'blockName', modName: 'mod', modVal: 'val'", "contents": "{ block: '${1:blockName}', modName: '${2:mod}', modVal: '${3:val}' } }$0" },
+        { "trigger": "block: 'blockName', elem: 'elemName', modName: 'mod', modVal: 'val'", "contents": "{ block: '${1:blockName}', elem: '${2:elemName}', modName: '${3:mod}', modVal: '${4:val}' }$0" },
+        // { "trigger": "block: 'blockName', mods: { modName: modVal },", "contents": "{ block: '${1:blockName}', mods: { ${2:modName}: '${3:modVal}' } }$0" },
+        // { "trigger": "block: 'blockName', mods: { modName: [modVal1, modVal2] },", "contents": "{ block: '${1:blockName}', mods: { ${2:modName}: ['${3:modVal1}', '${4:modVal2}'] } }$0" },
+        // { "trigger": "block: 'blockName', elem: 'elemName', mods: { modName: modVal1 },", "contents": "{ block: '${1:blockName}', elem: '${2:elemName}', mods: { ${3:modName}: '${4:modVal1}' } }$0" },
+        // { "trigger": "block: 'blockName', elems: [elemName1, elemName2],", "contents": "{ block: '${1:blockName}', elems: ['${2:elemName}', '${3:elemName2}'] } }$0" },
+
+
+        { "trigger": "elem: 'elemName'", "contents": "{ elem: '${1:elemName}' }$0" },
+        { "trigger": "elem: 'elemName', modName: 'mod', modVal: 'val'", "contents": "{ elem: '${1:elemName}', modName: '${2:mod}', modVal: '${3:val}' } }$0" },
+        // { "trigger": "elems: ['elemName1', 'elemName2']", "contents": "{ elems: ['${1:elemName1}', '${2:elemName2}'] }$0" },
+
+
+        // { "trigger": "mods: { modName: 'modVal' } }", "contents": "{ mods: { ${1:modName}: '${2:modVal}' } },$0" },
+
+
+        "block",
+        "elem",
+
+        // "elems",
+        // "mods",
+        "modName",
+        "modVal"
+    ]
+}
