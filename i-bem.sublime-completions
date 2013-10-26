@@ -9,35 +9,49 @@
 
         { "trigger": "var self = this", "contents": "var ${1:self} = this$0" },
 
+        { "trigger": "BEM.blocks['object']\tStorage for block declarations (hash by block name)", "contents": "BEM.blocks['$1']$0" },
+        { "trigger": "blocks['object']\tStorage for block declarations (hash by block name)", "contents": "blocks['$1']$0" },
+
         { "trigger": "domElem\tcast to DOM elem", "contents": "domElem$0" },
         { "trigger": "bem(block)\tcast to BEM block, avoid!", "contents": "bem('${1:blockName}')$0" },
 
-        { "trigger": "buildSelector('...')\tCSS selector from block", "contents": "buildSelector('$1')$0" },
+        { "trigger": "buildSelector([elem], [modName], [modVal])\tBuilds a CSS selector corresponding to a block/element and modifier", "contents": "buildSelector('$1' ,'$2', '$3')$0" },
+        { "trigger": "elemParams(elem)\tRetrieves parameters of a block element", "contents": "elemParams('${1:elem}')$0" },
+        { "trigger": "destruct([keepDOM])\tDeletes a block", "contents": "destruct('${1:true}')$0" },
 
-        // поиск внутри контекста
+        // поиск внутри
         { "trigger": "findBlockInside(block)",          "contents": "findBlockInside(${1:block})$0" },
-        { "trigger": "findBlockInside([elem], block)",  "contents": "findBlockInside(${1:elem}, ${2:block})$0" },
+        { "trigger": "findBlockInside([elem], block)\tFinds the first block inside the current block or its elements (including context)",  "contents": "findBlockInside(${1:elem}, ${2:block})$0" },
         { "trigger": "findBlocksInside(block)",         "contents": "findBlocksInside(${1:block})$0" },
-        { "trigger": "findBlocksInside([elem], block)", "contents": "findBlocksInside(${1:elem}, ${2:block})$0" },
-        // поиск снаружи контекста
+        { "trigger": "findBlocksInside([elem], block)\tFinds blocks inside the current block or its elements (including context)", "contents": "findBlocksInside(${1:elem}, ${2:block})$0" },
+        // поиск снаружи
         { "trigger": "findBlockOutside(block)",          "contents": "findBlockOutside(${1:block})$0" },
-        { "trigger": "findBlockOutside([elem], block)",  "contents": "findBlockOutside(${1:elem}, ${2:block})$0" },
+        { "trigger": "findBlockOutside([elem], block)\tFinds the first block outside the current block or its elements (including context)",  "contents": "findBlockOutside(${1:elem}, ${2:block})$0" },
         { "trigger": "findBlocksOutside(block)",         "contents": "findBlocksOutside(${1:block})$0" },
-        { "trigger": "findBlocksOutside([elem], block)", "contents": "findBlocksOutside(${1:elem}, ${2:block})$0" },
+        { "trigger": "findBlocksOutside([elem], block)\tFinds blocks outside the current block or its elements (including context)", "contents": "findBlocksOutside(${1:elem}, ${2:block})$0" },
         // поиск на DOM-узле текущего блока
-        { "trigger": "findBlockOn(block)",          "contents": "findBlockOn(${1:block})$0" },
-        { "trigger": "findBlockOn([elem], block)",  "contents": "findBlockOn(${1:elem}, ${2:block})$0" },
-        { "trigger": "findBlocksOn(block)",         "contents": "findBlocksOn(${1:block})$0" },
-        { "trigger": "findBlocksOn([elem], block)", "contents": "findBlocksOn(${1:elem}, ${2:block})$0" },
+        { "trigger": "findBlockOn(block)\tFinds the first block on DOM elements of the current block",          "contents": "findBlockOn(${1:block})$0" },
+        { "trigger": "findBlockOn([elem], block)\tFinds the first block on DOM elements of the current block's elements",  "contents": "findBlockOn(${1:elem}, ${2:block})$0" },
+        { "trigger": "findBlocksOn(block)\tFinds blocks on DOM elements of the current block",         "contents": "findBlocksOn(${1:block})$0" },
+        { "trigger": "findBlocksOn([elem], block)\tFinds blocks on DOM elements of the current block or its elements", "contents": "findBlocksOn(${1:elem}, ${2:block})$0" },
 
         // кеширующий
-        { "trigger": "elem(name)                 \tcached", "contents": "elem(${1:name})$0" },
-        { "trigger": "elem(name, modName, modVal)\tcached", "contents": "elem(${1:name}, ${2:modName}, ${3:modVal})$0" },
+        { "trigger": "elem(names)                     \tLazy search for elements nested in a block (caches results)", "contents": "elem(${1:names})$0" },
+        { "trigger": "elem(names, [modName], [modVal])\tLazy search for elements nested in a block (caches results)", "contents": "elem(${1:names}, ${2:modName}, ${3:modVal})$0" },
+
+        { "trigger": "dropElemCache(names)\tClearing the cache for elements", "contents": "dropElemCache(${1:names})$0" },
+        { "trigger": "dropElemCache(names, [modName], [modVal])\tClearing the cache for elements", "contents": "dropElemCache(${1:names}, ${2:modName}, ${3:modVal})$0" },
+        { "trigger": "containsDomElem(domElem)\tChecks whether a DOM element is in a block", "contents": "containsDomElem(${1:domElem})$0" },
+
+        { "trigger": "extractParams\tRetrieves block parameters from a DOM element", "contents": "extractParams$0" },
+        { "trigger": "doc\tDocument shortcut", "contents": "doc$0" },
+        { "trigger": "win\tWindow shortcut", "contents": "win$0" },
+
         // некеширующий
         { "trigger": "findElem(name)                  \tno cache", "contents": "findElem(${1:name})$0" },
         { "trigger": "findElem(name, modName, modVal) \tno cache", "contents": "findElem(${1:name}, ${2:modName}, ${3:modVal})$0" },
-        { "trigger": "findElem(ctx, name)             \tno cache", "contents": "findElem(${1:ctx}, ${2:name})$0" },
-        { "trigger": "findElem(ctx, name, modName, modVal)\tno cache", "contents": "findElem(${1:ctx}, ${2:name}, ${3:modName}, ${4:modVal})$0" },
+        { "trigger": "findElem(ctx, names)             \tno cache", "contents": "findElem(${1:ctx}, ${2:names})$0" },
+        { "trigger": "findElem(ctx, names, modName, modVal)\tno cache", "contents": "findElem(${1:ctx}, ${2:names}, ${3:modName}, ${4:modVal})$0" },
 
         // значение модификатора блока
         { "trigger": "getMod(modName)", "contents": "getMod(${1:modName})$0" },
@@ -61,13 +75,19 @@
         { "trigger": "onElemSetMod: { ... }", "contents": "onElemSetMod: {\n\t${1:modName}: function(mod, val, oldVal) {\n\t\t${2:}\n\t}\n}$0" },
 
         // DOM-события
-        { "trigger": "bindTo(event, fn)          \tDOM event", "contents": "bindTo('${1:click}', function(){${2:}});$0" },
-        { "trigger": "bindTo(elem, event, fn)    \tDOM event", "contents": "bindTo(${1:elem}, '${2:click}', function(){${3:}});$0" },
-        { "trigger": "liveBindTo(event, fn)      \tDOM event", "contents": "liveBindTo('${1:click}', function(){${2:}});$0" },
-        { "trigger": "liveBindTo(elem, event, fn)\tDOM event", "contents": "liveBindTo(${1:elem}, '${2:click}', function(){${3:}});$0" },
-        { "trigger": "unbindFrom(event)          \tDOM event", "contents": "unbindFrom('${1:click}');$0" },
-        { "trigger": "unbindFrom(elem, event)    \tDOM event", "contents": "unbindFrom(${1:elem}, '${2:click}');$0" },
-        // liveUnbindFrom ??
+        { "trigger": "bindTo(event, fn)       \tAdds an event handler to the block's main DOM elements", "contents": "bindTo('${1:click}', function(){${2:}});$0" },
+        { "trigger": "bindTo(elem, event, fn) \tAdds an event handler to the block's DOM nested elements", "contents": "bindTo(${1:elem}, '${2:click}', function(){${3:}});$0" },
+        { "trigger": "bindToDomElem(domElem, event, fn)\tAdds an event handler for any DOM element", "contents": "bindToDomElem('${1:domElem}', '${2:click}', function(){${3:}});$0" },
+        { "trigger": "bindToDoc(event, fn)\tAdds an event handler to the document", "contents": "bindToDoc('${1:click}', function(){${2:}});$0" },
+        { "trigger": "bindToWin(event, fn)\tAdds an event handler to the window", "contents": "bindToWin('${1:click}', function(){${2:}});$0" },
+
+
+        { "trigger": "unbindFrom(event)      \tRemoves event handlers from the block's main DOM elements", "contents": "unbindFrom('${1:click}');$0" },
+        { "trigger": "unbindFrom(elem, event)\tRemoves event handlers from the block's nested DOM elements", "contents": "unbindFrom(${1:elem}, '${2:click}');$0" },
+        { "trigger": "unbindFromDomElem(domElem, event)\tRemoves event handlers from any DOM element", "contents": "unbindFromDomElem(${1:domElem}, '${2:click}');$0" },
+        { "trigger": "unbindFromDoc(event)\tRemoves event handler from document", "contents": "unbindFromDoc('${1:click}');$0" },
+        { "trigger": "unbindFromWin(event)\tRemoves event handler from window", "contents": "unbindFromWin('${1:click}');$0" },
+
 
         // BEM-события
         { "trigger": "on(event, fn)           \tBEM event", "contents": "on('${1:click}', function(){${2:}});$0" },
@@ -83,7 +103,39 @@
         { "trigger": "trigger(event)      \tBEM event", "contents": "trigger(${1:event})$0" },
         { "trigger": "trigger(event, data)\tBEM event", "contents": "trigger(${1:event}, ${2:data})$0" },
 
-        { "trigger": "liveCtxBind(elem, event, fn, ctx)\tBEM event", "contents": "liveCtxBind(${1:elem}, '${2:click}', function(){${3:}}, ${4:ctx});$0" },
+        { "trigger": "liveCtxBind(ctx, e, [data], fn, [fnCtx])\tdeprecated Use .on. Adds a live event handler to a block, based on a specified element where the event will be listened for", "contents": "liveCtxBind(${1:ctx}, '${2:click}', ${3:data}, function(){${4:}}, ${5:fnCtx});$0" },
+        { "trigger": "liveCtxUnbind(ctx, e, [fn], [fnCtx])\tdeprecated Use .on. Removes a live event handler from a block, based on a specified element where the event was being listened for", "contents": "liveCtxUnbind(${1:ctx}, '${2:click}', function(){${3:}}, ${4:fnCtx});$0" },
+
+        { "trigger": "liveInitOnEvent([elemName], event, callback)\tHelper for live initialization for an event on DOM elements of a block or its elements",
+         "contents": "liveInitOnEvent('${1:elemName}', '${2:click}', function(){${3:}});$0" },
+        { "trigger": "liveBindTo(event, callback)      \tDOM event", "contents": "liveBindTo('${1:click}', function(){${2:}});$0" },
+        { "trigger": "liveBindTo(elem, event, callback)\tDOM event", "contents": "liveBindTo(${1:elem}, '${2:click}', function(){${3:}});$0" },
+        { "trigger": "liveBindTo([to], event, [callback], invokeOnInit)\tHelper for subscribing to live events on DOM elements of a block or its elements",
+         "contents": "liveBindTo(${1:to}, '${2:click}', function(){${3:}}, ${4:invokeOnInit});$0" },
+        { "trigger": "liveUnbindFrom([elem], event, [callback])\tHelper for unsubscribing from live events on DOM elements of a block or its elements",
+         "contents": "liveUnbindFrom(${1:elem}, '${2:click}', function(){${3:}});$0" },
+        { "trigger": "liveInitOnBlockEvent(event, blockName, callback)\tHelper for live initialization for a different block's event on the current block's DOM element",
+         "contents": "liveInitOnBlockEvent('${1:click}', ${2:blockName}, function(){${3:}});$0" },
+        { "trigger": "liveInitOnBlockInsideEvent(event, blockName, callback)\tHelper for live initialization for a different block's event inside the current block",
+         "contents": "liveInitOnBlockInsideEvent('${1:click}', ${2:blockName}, function(){${3:}});$0" },
+        // liveInitOnBlockInit(blockName, callback) deprecated - use liveInitOnBlockEvent
+        // liveInitOnBlockInsideInit(blockName, [callback]) deprecated - use liveInitOnBlockInsideEvent Helper for live initialization when a different block is initialized inside the current block
+
+
+
+        { "trigger": "append(ctx, content)\tAdds a fragment of the DOM tree at the end of the context and initializes blocks", "contents": "append(${1:ctx}, ${2:content})$0" },
+        { "trigger": "prepend(ctx, content)\tAdds a fragment of the DOM tree at the beginning of the context and initializes blocks", "contents": "prepend(${1:ctx}, ${2:content})$0" },
+        { "trigger": "before(ctx, content)\tAdds a fragment of the DOM tree before the context and initializes blocks", "contents": "before(${1:ctx}, ${2:content})$0" },
+        { "trigger": "after(ctx, content)\tAdds a fragment of the DOM tree after the context and initializes blocks", "contents": "after(${1:ctx}, ${2:content})$0" },
+
+
+        { "trigger": "getBlockByUniqId([uniqId])\tdeprecated Returns a block instance by unique ID", "contents": "getBlockByUniqId('${1:uniqId}')$0" },
+        { "trigger": "getWindowSize()\tReturns the size of the current window", "contents": "getWindowSize()$0" },
+
+
+        { "trigger": "init([ctx], callback, callbackCtx)\tInitializes blocks on a fragment of the DOM tree", "contents": "init(${1:ctx}, function(){${2:}}, ${3:callbackCtx})$0" },
+        { "trigger": "destruct([keepDOM], ctx, [excludeSelf])\tDestroys blocks on a fragment of the DOM tree", "contents": "destruct(${1:keepDOM}, ${2:ctx}, ${3:excludeSelf})$0" },
+        { "trigger": "update(ctx, content, [callback], [callbackCtx])\tReplaces a fragment of the DOM tree inside the context, destroying old blocks and intializing new ones", "contents": "update(${1:ctx}, ${2:content}, function(){${3:}}, ${4:callbackCtx})$0" },
 
 
         // алиасы для блоков, элементов и модификаторов
